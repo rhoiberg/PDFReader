@@ -86,8 +86,9 @@
 	[mainToolbar setBookmarkState:bookmarked]; // Update
 }
 
-- (void)showDocumentPage:(NSInteger)page
+- (void)showDocumentPage:(NSInteger)index
 {
+	NSInteger page = index + 1;
     assert(page <= [document.pageCount integerValue]);
 
     if (page == currentPage) return;
@@ -95,7 +96,7 @@
                                                         UIPageViewControllerNavigationDirectionForward:
                                                         UIPageViewControllerNavigationDirectionReverse;
 	
-    ReaderContentViewController *currentViewController = [self viewControllerAtIndex:page];
+    ReaderContentViewController *currentViewController = [self viewControllerAtIndex:index];
     _pageIsAnimating = NO;
     NSArray *viewControllers =
     [NSArray arrayWithObject:currentViewController];
@@ -264,8 +265,8 @@
 {
 	[super viewWillAppear:animated];
     if (document != nil) {
-        NSInteger page = [document.pageNumber integerValue];
-        [self showDocumentPage:page];
+        NSInteger index = [document.pageNumber integerValue] - 1;
+        [self showDocumentPage:index];
     }
 }
 

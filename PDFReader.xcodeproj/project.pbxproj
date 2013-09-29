@@ -65,7 +65,31 @@
 		86BD101F178B6C1400C1AEF4 /* Reader-Print@2x.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 86133750178B5541004B6339 /* Reader-Print@2x.png */; };
 		86BD1020178B6C1400C1AEF4 /* Reader-Thumbs.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 86133751178B5541004B6339 /* Reader-Thumbs.png */; };
 		86BD1021178B6C1400C1AEF4 /* Reader-Thumbs@2x.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 86133752178B5541004B6339 /* Reader-Thumbs@2x.png */; };
+		A1373DBB17F8979100E46EA5 /* Reader-Button-H.png in Resources */ = {isa = PBXBuildFile; fileRef = 86133745178B5541004B6339 /* Reader-Button-H.png */; };
+		A1373DBC17F8979100E46EA5 /* Reader-Button-H@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 86133746178B5541004B6339 /* Reader-Button-H@2x.png */; };
+		A1373DBD17F8979100E46EA5 /* Reader-Button-N.png in Resources */ = {isa = PBXBuildFile; fileRef = 86133747178B5541004B6339 /* Reader-Button-N.png */; };
+		A1373DBE17F8979100E46EA5 /* Reader-Button-N@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 86133748178B5541004B6339 /* Reader-Button-N@2x.png */; };
+		A1373DBF17F8979100E46EA5 /* Reader-Email.png in Resources */ = {isa = PBXBuildFile; fileRef = 86133749178B5541004B6339 /* Reader-Email.png */; };
+		A1373DC017F8979100E46EA5 /* Reader-Email@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8613374A178B5541004B6339 /* Reader-Email@2x.png */; };
+		A1373DC117F8979100E46EA5 /* Reader-Mark-N.png in Resources */ = {isa = PBXBuildFile; fileRef = 8613374B178B5541004B6339 /* Reader-Mark-N.png */; };
+		A1373DC217F8979100E46EA5 /* Reader-Mark-N@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8613374C178B5541004B6339 /* Reader-Mark-N@2x.png */; };
+		A1373DC317F8979100E46EA5 /* Reader-Mark-Y.png in Resources */ = {isa = PBXBuildFile; fileRef = 8613374D178B5541004B6339 /* Reader-Mark-Y.png */; };
+		A1373DC417F8979100E46EA5 /* Reader-Mark-Y@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8613374E178B5541004B6339 /* Reader-Mark-Y@2x.png */; };
+		A1373DC517F8979100E46EA5 /* Reader-Print.png in Resources */ = {isa = PBXBuildFile; fileRef = 8613374F178B5541004B6339 /* Reader-Print.png */; };
+		A1373DC617F8979100E46EA5 /* Reader-Print@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 86133750178B5541004B6339 /* Reader-Print@2x.png */; };
+		A1373DC717F8979100E46EA5 /* Reader-Thumbs.png in Resources */ = {isa = PBXBuildFile; fileRef = 86133751178B5541004B6339 /* Reader-Thumbs.png */; };
+		A1373DC817F8979100E46EA5 /* Reader-Thumbs@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 86133752178B5541004B6339 /* Reader-Thumbs@2x.png */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A1373DB617F8958C00E46EA5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 86133725178B546B004B6339 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A1373D8617F8951E00E46EA5;
+			remoteInfo = "pdf-resources";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		8613372B178B546B004B6339 /* CopyFiles */ = {
@@ -191,10 +215,22 @@
 		861337A6178B5646004B6339 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		867C7E4A178C9E8300DD3523 /* ReaderContentViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ReaderContentViewController.h; path = ../Sources/ReaderContentViewController.h; sourceTree = "<group>"; };
 		867C7E4B178C9E8300DD3523 /* ReaderContentViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReaderContentViewController.m; sourceTree = "<group>"; };
+		A1373D8717F8951E00E46EA5 /* pdf-resources.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "pdf-resources.bundle"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1373D8917F8951E00E46EA5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		A1373D8B17F8951E00E46EA5 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		A1373D8D17F8951E00E46EA5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		A1373DA217F8951E00E46EA5 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		8613372A178B546B004B6339 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A1373D8417F8951E00E46EA5 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -208,6 +244,7 @@
 			isa = PBXGroup;
 			children = (
 				86133732178B546B004B6339 /* PDFReader */,
+				A1373D8817F8951E00E46EA5 /* Frameworks */,
 				8613372E178B546B004B6339 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -216,6 +253,7 @@
 			isa = PBXGroup;
 			children = (
 				8613372D178B546B004B6339 /* libPDFReader.a */,
+				A1373D8717F8951E00E46EA5 /* pdf-resources.bundle */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -340,6 +378,17 @@
 			path = Sources;
 			sourceTree = "<group>";
 		};
+		A1373D8817F8951E00E46EA5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A1373D8917F8951E00E46EA5 /* Foundation.framework */,
+				A1373D8B17F8951E00E46EA5 /* CoreGraphics.framework */,
+				A1373D8D17F8951E00E46EA5 /* UIKit.framework */,
+				A1373DA217F8951E00E46EA5 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -355,11 +404,29 @@
 			buildRules = (
 			);
 			dependencies = (
+				A1373DB717F8958C00E46EA5 /* PBXTargetDependency */,
 			);
 			name = PDFReader;
 			productName = PDFReader;
 			productReference = 8613372D178B546B004B6339 /* libPDFReader.a */;
 			productType = "com.apple.product-type.library.static";
+		};
+		A1373D8617F8951E00E46EA5 /* pdf-resources */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A1373DB417F8951E00E46EA5 /* Build configuration list for PBXNativeTarget "pdf-resources" */;
+			buildPhases = (
+				A1373D8317F8951E00E46EA5 /* Sources */,
+				A1373D8417F8951E00E46EA5 /* Frameworks */,
+				A1373D8517F8951E00E46EA5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "pdf-resources";
+			productName = "pdf-resources";
+			productReference = A1373D8717F8951E00E46EA5 /* pdf-resources.bundle */;
+			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
 
@@ -384,9 +451,34 @@
 			projectRoot = "";
 			targets = (
 				8613372C178B546B004B6339 /* PDFReader */,
+				A1373D8617F8951E00E46EA5 /* pdf-resources */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A1373D8517F8951E00E46EA5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A1373DBB17F8979100E46EA5 /* Reader-Button-H.png in Resources */,
+				A1373DBC17F8979100E46EA5 /* Reader-Button-H@2x.png in Resources */,
+				A1373DBD17F8979100E46EA5 /* Reader-Button-N.png in Resources */,
+				A1373DBE17F8979100E46EA5 /* Reader-Button-N@2x.png in Resources */,
+				A1373DBF17F8979100E46EA5 /* Reader-Email.png in Resources */,
+				A1373DC017F8979100E46EA5 /* Reader-Email@2x.png in Resources */,
+				A1373DC117F8979100E46EA5 /* Reader-Mark-N.png in Resources */,
+				A1373DC217F8979100E46EA5 /* Reader-Mark-N@2x.png in Resources */,
+				A1373DC317F8979100E46EA5 /* Reader-Mark-Y.png in Resources */,
+				A1373DC417F8979100E46EA5 /* Reader-Mark-Y@2x.png in Resources */,
+				A1373DC517F8979100E46EA5 /* Reader-Print.png in Resources */,
+				A1373DC617F8979100E46EA5 /* Reader-Print@2x.png in Resources */,
+				A1373DC717F8979100E46EA5 /* Reader-Thumbs.png in Resources */,
+				A1373DC817F8979100E46EA5 /* Reader-Thumbs@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		86133729178B546B004B6339 /* Sources */ = {
@@ -418,7 +510,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A1373D8317F8951E00E46EA5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A1373DB717F8958C00E46EA5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A1373D8617F8951E00E46EA5 /* pdf-resources */;
+			targetProxy = A1373DB617F8958C00E46EA5 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		86133754178B5541004B6339 /* Localizable.strings */ = {
@@ -520,6 +627,59 @@
 			};
 			name = Release;
 		};
+		A1373DB017F8951E00E46EA5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "pdf-resources/pdf-resources-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 2;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		A1373DB117F8951E00E46EA5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "pdf-resources/pdf-resources-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 2;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -537,6 +697,15 @@
 			buildConfigurations = (
 				8613373C178B546B004B6339 /* Debug */,
 				8613373D178B546B004B6339 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A1373DB417F8951E00E46EA5 /* Build configuration list for PBXNativeTarget "pdf-resources" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A1373DB017F8951E00E46EA5 /* Debug */,
+				A1373DB117F8951E00E46EA5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

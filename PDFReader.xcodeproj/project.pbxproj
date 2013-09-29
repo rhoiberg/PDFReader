@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		86133731178B546B004B6339 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86133730178B546B004B6339 /* Foundation.framework */; };
 		86133736178B546B004B6339 /* PDFReader.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 86133735178B546B004B6339 /* PDFReader.h */; };
 		86133738178B546B004B6339 /* PDFReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 86133737178B546B004B6339 /* PDFReader.m */; };
 		86133781178B5541004B6339 /* CGPDFDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 8613375A178B5541004B6339 /* CGPDFDocument.m */; };
@@ -30,11 +29,6 @@
 		86133792178B5541004B6339 /* ThumbsMainToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 8613377C178B5541004B6339 /* ThumbsMainToolbar.m */; };
 		86133793178B5541004B6339 /* ThumbsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8613377E178B5541004B6339 /* ThumbsViewController.m */; };
 		86133794178B5541004B6339 /* UIXToolbarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 86133780178B5541004B6339 /* UIXToolbarView.m */; };
-		8613379F178B55DB004B6339 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8613379D178B55B7004B6339 /* ImageIO.framework */; };
-		861337A0178B55DB004B6339 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8613379B178B55AC004B6339 /* MessageUI.framework */; };
-		861337A1178B55DB004B6339 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86133799178B55A2004B6339 /* QuartzCore.framework */; };
-		861337A2178B55DB004B6339 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86133797178B5590004B6339 /* CoreGraphics.framework */; };
-		861337A3178B55DB004B6339 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86133795178B5586004B6339 /* UIKit.framework */; };
 		867C7E4C178CACC400DD3523 /* ReaderContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 867C7E4B178C9E8300DD3523 /* ReaderContentViewController.m */; };
 		867C7E4D178CACCF00DD3523 /* ReaderContentViewController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 867C7E4A178C9E8300DD3523 /* ReaderContentViewController.h */; };
 		86BD0FFA178B6BCA00C1AEF4 /* CGPDFDocument.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 86133759178B5541004B6339 /* CGPDFDocument.h */; };
@@ -132,7 +126,6 @@
 
 /* Begin PBXFileReference section */
 		8613372D178B546B004B6339 /* libPDFReader.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPDFReader.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		86133730178B546B004B6339 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		86133734178B546B004B6339 /* PDFReader-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PDFReader-Prefix.pch"; sourceTree = "<group>"; };
 		86133735178B546B004B6339 /* PDFReader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PDFReader.h; sourceTree = "<group>"; };
 		86133737178B546B004B6339 /* PDFReader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PDFReader.m; sourceTree = "<group>"; };
@@ -193,11 +186,6 @@
 		8613377E178B5541004B6339 /* ThumbsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThumbsViewController.m; sourceTree = "<group>"; };
 		8613377F178B5541004B6339 /* UIXToolbarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIXToolbarView.h; path = ../Sources/UIXToolbarView.h; sourceTree = "<group>"; };
 		86133780178B5541004B6339 /* UIXToolbarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIXToolbarView.m; sourceTree = "<group>"; };
-		86133795178B5586004B6339 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		86133797178B5590004B6339 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		86133799178B55A2004B6339 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		8613379B178B55AC004B6339 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
-		8613379D178B55B7004B6339 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		861337A4178B5646004B6339 /* HISTORY.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = HISTORY.md; sourceTree = "<group>"; };
 		861337A5178B5646004B6339 /* LICENSE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.md; sourceTree = "<group>"; };
 		861337A6178B5646004B6339 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
@@ -210,12 +198,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				86133731178B546B004B6339 /* Foundation.framework in Frameworks */,
-				8613379F178B55DB004B6339 /* ImageIO.framework in Frameworks */,
-				861337A0178B55DB004B6339 /* MessageUI.framework in Frameworks */,
-				861337A1178B55DB004B6339 /* QuartzCore.framework in Frameworks */,
-				861337A2178B55DB004B6339 /* CoreGraphics.framework in Frameworks */,
-				861337A3178B55DB004B6339 /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -226,7 +208,6 @@
 			isa = PBXGroup;
 			children = (
 				86133732178B546B004B6339 /* PDFReader */,
-				8613372F178B546B004B6339 /* Frameworks */,
 				8613372E178B546B004B6339 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -237,19 +218,6 @@
 				8613372D178B546B004B6339 /* libPDFReader.a */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		8613372F178B546B004B6339 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				8613379D178B55B7004B6339 /* ImageIO.framework */,
-				8613379B178B55AC004B6339 /* MessageUI.framework */,
-				86133799178B55A2004B6339 /* QuartzCore.framework */,
-				86133797178B5590004B6339 /* CoreGraphics.framework */,
-				86133795178B5586004B6339 /* UIKit.framework */,
-				86133730178B546B004B6339 /* Foundation.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		86133732178B546B004B6339 /* PDFReader */ = {

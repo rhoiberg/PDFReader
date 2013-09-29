@@ -277,6 +277,8 @@
 	{
 		[self performSelector:@selector(showDocument:) withObject:nil afterDelay:0.02];
 	}
+	mainPagebar.hidden = YES;
+	mainToolbar.hidden = YES;
 
 #if (READER_DISABLE_IDLE == TRUE) // Option
 
@@ -816,7 +818,7 @@
         return nil;
     NSUInteger index = [self indexOfViewController:
                         (ReaderContentViewController *)viewController];
-    if ((index == 0) || (index == NSNotFound)) {
+    if ((index == 1) || (index == NSNotFound)) {
         return nil;
     }
     

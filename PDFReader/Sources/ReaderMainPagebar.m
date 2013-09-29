@@ -102,7 +102,7 @@
 		}
 	}
 
-	if (page != pageThumbView.tag) // Only if page number changed
+	if ((page != pageThumbView.tag) && pageThumbView) // Only if page number changed
 	{
 		pageThumbView.tag = page; [pageThumbView reuse]; // Reuse the thumb view
 
@@ -120,18 +120,15 @@
 
 - (void)updatePageNumberText:(NSInteger)page
 {
-	if (page != pageNumberLabel.tag) // Only if page number changed
-	{
-		NSInteger pages = [document.pageCount integerValue]; // Total pages
+	NSInteger pages = [document.pageCount integerValue]; // Total pages
 
-		NSString *format = NSLocalizedString(@"%d of %d", @"format"); // Format
+	NSString *format = NSLocalizedString(@"%d of %d", @"format"); // Format
 
-		NSString *number = [NSString stringWithFormat:format, page+1, pages]; // Text
+	NSString *number = [NSString stringWithFormat:format, page, pages]; // Text
 
-		pageNumberLabel.text = number; // Update the page number label text
+	pageNumberLabel.text = number; // Update the page number label text
 
-		pageNumberLabel.tag = page; // Update the last page number tag
-	}
+	pageNumberLabel.tag = page; // Update the last page number tag
 }
 
 - (id)initWithFrame:(CGRect)frame document:(ReaderDocument *)object
@@ -413,7 +410,7 @@
 
 - (void)trackViewTouchDown:(ReaderTrackControl *)trackView
 {
-	NSInteger page = [self trackViewPageNumber:trackView]; // Page
+	NSInteger page = [self trackViewPageNumber:trackView]+1; // Page
 
 	if (page != [document.pageNumber integerValue]) // Only if different
 	{

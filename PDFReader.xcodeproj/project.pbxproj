@@ -81,16 +81,6 @@
 		A1373DC817F8979100E46EA5 /* Reader-Thumbs@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 86133752178B5541004B6339 /* Reader-Thumbs@2x.png */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		A1373DB617F8958C00E46EA5 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 86133725178B546B004B6339 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = A1373D8617F8951E00E46EA5;
-			remoteInfo = "pdf-resources";
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXCopyFilesBuildPhase section */
 		8613372B178B546B004B6339 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -216,10 +206,6 @@
 		867C7E4A178C9E8300DD3523 /* ReaderContentViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ReaderContentViewController.h; path = ../Sources/ReaderContentViewController.h; sourceTree = "<group>"; };
 		867C7E4B178C9E8300DD3523 /* ReaderContentViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReaderContentViewController.m; sourceTree = "<group>"; };
 		A1373D8717F8951E00E46EA5 /* pdf-resources.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "pdf-resources.bundle"; sourceTree = BUILT_PRODUCTS_DIR; };
-		A1373D8917F8951E00E46EA5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		A1373D8B17F8951E00E46EA5 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		A1373D8D17F8951E00E46EA5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		A1373DA217F8951E00E46EA5 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -244,7 +230,6 @@
 			isa = PBXGroup;
 			children = (
 				86133732178B546B004B6339 /* PDFReader */,
-				A1373D8817F8951E00E46EA5 /* Frameworks */,
 				8613372E178B546B004B6339 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -378,17 +363,6 @@
 			path = Sources;
 			sourceTree = "<group>";
 		};
-		A1373D8817F8951E00E46EA5 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				A1373D8917F8951E00E46EA5 /* Foundation.framework */,
-				A1373D8B17F8951E00E46EA5 /* CoreGraphics.framework */,
-				A1373D8D17F8951E00E46EA5 /* UIKit.framework */,
-				A1373DA217F8951E00E46EA5 /* XCTest.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -404,7 +378,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				A1373DB717F8958C00E46EA5 /* PBXTargetDependency */,
 			);
 			name = PDFReader;
 			productName = PDFReader;
@@ -519,14 +492,6 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		A1373DB717F8958C00E46EA5 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = A1373D8617F8951E00E46EA5 /* pdf-resources */;
-			targetProxy = A1373DB617F8958C00E46EA5 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
 /* Begin PBXVariantGroup section */
 		86133754178B5541004B6339 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
@@ -607,6 +572,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/../common/**";
 			};
 			name = Debug;
 		};
@@ -624,59 +590,57 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/../common/**";
 			};
 			name = Release;
 		};
 		A1373DB017F8951E00E46EA5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "pdf-resources/pdf-resources-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_PRECOMPILE_PREFIX_HEADER = "";
+				GCC_PREFIX_HEADER = "";
+				GCC_PREPROCESSOR_DEFINITIONS = "";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = "";
+				GCC_WARN_ABOUT_RETURN_TYPE = "";
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = "";
+				GCC_WARN_UNUSED_FUNCTION = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 2;
-				WRAPPER_EXTENSION = app;
+				WRAPPER_EXTENSION = bundle;
 			};
 			name = Debug;
 		};
 		A1373DB117F8951E00E46EA5 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				ENABLE_NS_ASSERTIONS = NO;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "pdf-resources/pdf-resources-Prefix.pch";
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				ENABLE_NS_ASSERTIONS = "";
+				GCC_PRECOMPILE_PREFIX_HEADER = "";
+				GCC_PREFIX_HEADER = "";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = "";
+				GCC_WARN_ABOUT_RETURN_TYPE = "";
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = "";
+				GCC_WARN_UNUSED_FUNCTION = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 2;
-				WRAPPER_EXTENSION = app;
+				WRAPPER_EXTENSION = bundle;
 			};
 			name = Release;
 		};

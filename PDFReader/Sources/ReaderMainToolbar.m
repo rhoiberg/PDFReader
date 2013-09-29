@@ -26,6 +26,7 @@
 #import "ReaderConstants.h"
 #import "ReaderMainToolbar.h"
 #import "ReaderDocument.h"
+#import "CommonBundle.h"
 
 #import <MessageUI/MessageUI.h>
 
@@ -67,7 +68,8 @@
 {
 	assert(object != nil); // Must have a valid ReaderDocument
 
-    
+    CommonBundle *pdfBundle = [CommonBundle pdfResourcesBundle];
+	
     UIBarButtonItem *spaceItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:NULL];
     NSMutableArray *buttons;
 
@@ -89,7 +91,7 @@
         
         
 
-		UIBarButtonItem *thumbsButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Reader-Thumbs"]
+		UIBarButtonItem *thumbsButton = [[UIBarButtonItem alloc] initWithImage:[pdfBundle imageNamed:@"Reader-Thumbs"]
                                                                          style:UIBarButtonItemStylePlain
                                                                         target:self
                                                                         action:@selector(thumbsButtonTapped:)];
@@ -113,8 +115,8 @@
 //                                                                      action:@selector(markButtonTapped:) ];
         UIButton *flagButton = [UIButton buttonWithType:UIButtonTypeCustom];
         
-		UIImage *imageH = [UIImage imageNamed:@"Reader-Button-H"];
-		UIImage *imageN = [UIImage imageNamed:@"Reader-Button-N"];
+		UIImage *imageH = [pdfBundle imageNamed:@"Reader-Button-H"]; //[UIImage imageNamed:@"Reader-Button-H"];
+		UIImage *imageN = [pdfBundle imageNamed:@"Reader-Button-N"]; // [UIImage imageNamed:@"Reader-Button-N"];
         
         UIImage *buttonH = [imageH stretchableImageWithLeftCapWidth:5 topCapHeight:0];
 		UIImage *buttonN = [imageN stretchableImageWithLeftCapWidth:5 topCapHeight:0];
@@ -130,8 +132,8 @@
 
 		markButton = flagButton; markButton.enabled = NO; markButton.tag = NSIntegerMin;
 
-		markImageN = [UIImage imageNamed:@"Reader-Mark-N"]; // N image
-		markImageY = [UIImage imageNamed:@"Reader-Mark-Y"]; // Y image
+		markImageN = [pdfBundle imageNamed:@"Reader-Mark-N"]; //[UIImage imageNamed:@"Reader-Mark-N"]; // N image
+		markImageY = [pdfBundle imageNamed:@"Reader-Mark-Y"]; //[UIImage imageNamed:@"Reader-Mark-Y"]; // Y image
         
         UIBarButtonItem *fb = [[UIBarButtonItem alloc] initWithCustomView:flagButton];
         [buttons addObject:fb];
@@ -146,7 +148,7 @@
 
 			if (fileSize < (unsigned long long)15728640) // Check attachment size limit (15MB)
 			{
-				UIBarButtonItem *emailButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"Reader-Email"]
+				UIBarButtonItem *emailButton = [[UIBarButtonItem alloc]initWithImage:[pdfBundle imageNamed:@"Reader-Email"] //[UIImage imageNamed:@"Reader-Email"]
                                                                                style:UIBarButtonItemStylePlain
                                                                               target:self
                                                                               action:@selector(emailButtonTapped:)];
@@ -164,7 +166,7 @@
 
 			if ((printInteractionController != nil) && [printInteractionController isPrintingAvailable])
 			{
-				UIBarButtonItem *printButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Reader-Print"]
+				UIBarButtonItem *printButton = [[UIBarButtonItem alloc] initWithImage:[pdfBundle imageNamed:@"Reader-Print"] //[UIImage imageNamed:@"Reader-Print"]
                                                                                 style:UIBarButtonItemStylePlain
                                                                                target:self
                                                                                action:@selector(printButtonTapped:)];

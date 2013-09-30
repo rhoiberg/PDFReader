@@ -173,20 +173,6 @@
 	return YES;
 }
 
-/*
-- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
-{
-}
-
-- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation duration:(NSTimeInterval)duration
-{
-}
-
-- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
-{
-	//if (fromInterfaceOrientation == self.interfaceOrientation) return;
-}
-*/
 
 - (void)didReceiveMemoryWarning
 {
@@ -286,9 +272,7 @@
 
 - (void)thumbsView:(ReaderThumbsView *)thumbsView didSelectThumbWithIndex:(NSInteger)index
 {
-	NSInteger page = (showBookmarked ? [[bookmarked objectAtIndex:index] integerValue] : (index+1));
-
-	[delegate thumbsViewController:self gotoPage:page]; // Show the selected page
+	[delegate thumbsViewController:self gotoIndex:index]; // Show the selected page
 
 	[delegate dismissThumbsViewController:self]; // Dismiss thumbs display
 }

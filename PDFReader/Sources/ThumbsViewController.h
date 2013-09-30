@@ -35,7 +35,7 @@
 
 @required // Delegate protocols
 
-- (void)thumbsViewController:(ThumbsViewController *)viewController gotoPage:(NSInteger)page;
+- (void)thumbsViewController:(ThumbsViewController *)viewController gotoIndex:(NSInteger)index;
 
 - (void)dismissThumbsViewController:(ThumbsViewController *)viewController;
 

@@ -86,10 +86,10 @@
 	[mainToolbar setBookmarkState:bookmarked]; // Update
 }
 
-- (void)showDocumentPage:(NSInteger)index
+- (void)showDocumentIndex:(NSInteger)index
 {
 	NSInteger page = index + 1;
-    assert(page <= [document.pageCount integerValue]);
+	assert(page <= [document.pageCount integerValue]);
 
     if (page == currentPage) return;
     UIPageViewControllerNavigationDirection direction= page > currentPage?
@@ -120,7 +120,7 @@
 
 - (void)showDocument:(id)object
 {
-	[self showDocumentPage:[document.pageNumber integerValue]];
+	[self showDocumentIndex:[document.pageNumber integerValue] - 1];
 
 	document.lastOpen = [NSDate date]; // Update last opened date
 
@@ -266,7 +266,7 @@
 	[super viewWillAppear:animated];
     if (document != nil) {
         NSInteger index = [document.pageNumber integerValue] - 1;
-        [self showDocumentPage:index];
+        [self showDocumentIndex:index];
     }
 }
 
@@ -316,7 +316,7 @@
 
 	thePageViewController = nil; lastHideTime = nil;
 
-	lastAppearSize = CGSizeZero; currentPage = 0;
+	lastAppearSize = CGSizeZero; currentPage = 1;
 
 	[super viewDidUnload];
 }
@@ -459,7 +459,7 @@
 					{
 						NSInteger value = [target integerValue]; // Number
 
-						[self showDocumentPage:value]; // Show the page
+						[self showDocumentIndex:value]; // Show the page
 					}
 				}
 			}
@@ -756,16 +756,16 @@
 	[self dismissViewControllerAnimated:NO completion:NULL]; // Dismiss
 }
 
-- (void)thumbsViewController:(ThumbsViewController *)viewController gotoPage:(NSInteger)page
+- (void)thumbsViewController:(ThumbsViewController *)viewController gotoIndex:(NSInteger)index
 {
-	[self showDocumentPage:page]; // Show the page
+	[self showDocumentIndex:index]; // Show the page
 }
 
 #pragma mark ReaderMainPagebarDelegate methods
 
 - (void)pagebar:(ReaderMainPagebar *)pagebar gotoPage:(NSInteger)page
 {
-	[self showDocumentPage:page]; // Show the page
+	[self showDocumentIndex:page]; // Show the page
 }
 
 #pragma mark UIApplication notification methods

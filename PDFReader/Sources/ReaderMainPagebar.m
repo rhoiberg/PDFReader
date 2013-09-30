@@ -78,7 +78,7 @@
 	return [self initWithFrame:frame document:nil];
 }
 
-- (void)updatePageThumbView:(NSInteger)page
+- (void)updatePageThumbView:(NSInteger)index
 {
 	NSInteger pages = [document.pageCount integerValue];
 
@@ -90,7 +90,7 @@
 
 		CGFloat stride = (useableWidth / (pages - 1)); // Page stride
 
-		NSInteger X = (stride * (page)); CGFloat pageThumbX = X;
+		NSInteger X = (stride * (index)); CGFloat pageThumbX = X;
 
 		CGRect pageThumbRect = pageThumbView.frame; // Current frame
 
@@ -102,6 +102,7 @@
 		}
 	}
 
+	NSInteger page = [document.pageNumber integerValue];
 	if ((page != pageThumbView.tag) && pageThumbView) // Only if page number changed
 	{
 		pageThumbView.tag = page; [pageThumbView reuse]; // Reuse the thumb view
@@ -110,7 +111,7 @@
 
 		NSURL *fileURL = document.fileURL; NSString *guid = document.guid; NSString *phrase = document.password;
 
-		ReaderThumbRequest *request = [ReaderThumbRequest newForView:pageThumbView fileURL:fileURL password:phrase guid:guid page:page+1 size:size];
+		ReaderThumbRequest *request = [ReaderThumbRequest newForView:pageThumbView fileURL:fileURL password:phrase guid:guid page:index size:size];
 
 		UIImage *image = [[ReaderThumbCache sharedInstance] thumbRequest:request priority:YES]; // Request the thumb
 
@@ -144,8 +145,8 @@
 		self.backgroundColor = [UIColor clearColor];
 
 		CAGradientLayer *layer = (CAGradientLayer *)self.layer;
-		UIColor *liteColor = [UIColor colorWithWhite:0.82f alpha:0.8f];
-		UIColor *darkColor = [UIColor colorWithWhite:0.32f alpha:0.8f];
+		UIColor *liteColor = [UIColor colorWithWhite:0.9f alpha:.9f];
+		UIColor *darkColor = [UIColor colorWithWhite:0.8f alpha:.9f];
 		layer.colors = [NSArray arrayWithObjects:(id)liteColor.CGColor, (id)darkColor.CGColor, nil];
 
 		CGRect shadowRect = self.bounds; shadowRect.size.height = 4.0f; shadowRect.origin.y -= shadowRect.size.height;
@@ -317,7 +318,7 @@
 
 	[self updatePageNumberText:page]; // Update page number text
 
-	[self updatePageThumbView:page]; // Update page thumb view
+	[self updatePageThumbView:page-1]; // Update page thumb view
 }
 
 - (void)updatePagebar
@@ -410,13 +411,13 @@
 
 - (void)trackViewTouchDown:(ReaderTrackControl *)trackView
 {
-	NSInteger page = [self trackViewPageNumber:trackView]+1; // Page
+	NSInteger page = [self trackViewPageNumber:trackView]; // Page
 
 	if (page != [document.pageNumber integerValue]) // Only if different
 	{
-		[self updatePageNumberText:page]; // Update page number text
+		//[self updatePageNumberText:page]; // Update page number text
 
-		[self updatePageThumbView:page]; // Update page thumb view
+		//[self updatePageThumbView:page]; // Update page thumb view
 
 		[self restartTrackTimer]; // Start the track timer
 	}

@@ -26,9 +26,11 @@
 #import <UIKit/UIKit.h>
 
 #import "ReaderDocument.h"
+#import "MusicListControlleriPad.h"
 
 @class ReaderViewController;
 @class ReaderContentView;
+@class MusicPlayerControlleriPad;
 
 @protocol ReaderViewControllerDelegate <NSObject>
 
@@ -38,13 +40,16 @@
 
 @end
 
-@interface ReaderViewController : UIViewController <UIPageViewControllerDataSource, UIPageViewControllerDelegate>
+@interface ReaderViewController : UIViewController <UIPageViewControllerDataSource, UIPageViewControllerDelegate, MusicListControllerDelegate>
 
 @property (nonatomic, unsafe_unretained, readwrite) id <ReaderViewControllerDelegate> delegate;
 @property (nonatomic,readonly) ReaderContentView *currentContentView;
-@property (assign)              BOOL pageIsAnimating;
-@property (assign)      BOOL    showStatusBar;
+@property (assign) BOOL pageIsAnimating;
+@property (assign) BOOL    showStatusBar;
+@property (nonatomic, strong) UIPopoverController  *popover;
+@property (nonatomic, strong) MusicPlayerControlleriPad  *mediaPlayer;
 
+- (void)tappedInToolbar:(UIButton *)button;
 - (id)initWithReaderDocument:(ReaderDocument *)object withActionButton:(UIBarButtonItem *)button;
 
 @end

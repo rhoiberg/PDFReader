@@ -33,6 +33,7 @@
 #import "ReaderThumbCache.h"
 #import "ReaderThumbQueue.h"
 #import "ReaderContentPage.h"
+#import "MusicPlayerControlleriPad.h"
 
 #import <MessageUI/MessageUI.h>
 
@@ -732,6 +733,46 @@
 	{
 		[mainToolbar setBookmarkState:NO]; 
 	}
+}
+
+- (void)tappedInToolbar:(UIBarButtonItem *)button
+{
+	if ([self.popover isPopoverVisible])
+		[self.popover dismissPopoverAnimated:YES];
+	else
+	{
+		if (!self.popover)
+		{
+			MusicListControlleriPad *musicController = [[MusicListControlleriPad alloc] initWithNibName:@"MusicTableView" bundle:nil];
+			musicController.delegate = self;
+			UINavigationController *modalController = [[UINavigationController alloc] initWithRootViewController:musicController];
+			self.popover = [[UIPopoverController alloc] initWithContentViewController:modalController];
+		}
+		[self.popover presentPopoverFromBarButtonItem:button permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+	}
+}
+
+#pragma mark MusicTableViewControllerDelegate methods
+
+- (void) playSong:(MPMediaItem *)song
+{
+	[self.mediaPlayer playSong:song];
+	[self.popover dismissPopoverAnimated:YES];
+	[NSTimer scheduledTimerWithTimeInterval:2.0
+									 target:self
+								   selector:@selector(hideAll)
+								   userInfo:nil
+									repeats:NO];
+	
+}
+
+- (void) hideAll
+{
+	[mainToolbar hideToolbar];
+	[mainPagebar hidePagebar]; // Hide
+	[self.mediaPlayer hidePlayer];
+	
+	lastHideTime = [NSDate new];
 }
 
 #pragma mark MFMailComposeViewControllerDelegate methods

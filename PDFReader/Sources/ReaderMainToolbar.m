@@ -94,18 +94,24 @@
 		UIBarButtonItem *thumbsButton = [[UIBarButtonItem alloc] initWithImage:[pdfBundle imageNamed:@"Reader-Thumbs"]
                                                                          style:UIBarButtonItemStylePlain
                                                                         target:self
-                                                                        action:@selector(thumbsButtonTapped:)];
-        [buttons addObject:spaceItem];
-        [buttons addObject:thumbsButton];
-        [buttons addObject:spaceItem];
+																		action:@selector(thumbsButtonTapped:)];
+		if (actionButton != nil)
+		{
+			[buttons addObject:spaceItem];
+            [buttons addObject:actionButton];
+			[buttons addObject:spaceItem];
+			[buttons addObject:thumbsButton];
+		}
+		else
+		{
+			[buttons addObject:spaceItem];
+            [buttons addObject:thumbsButton];
+			[buttons addObject:spaceItem];
+		}
 
 
 #endif // end of READER_ENABLE_THUMBS Option
         
-        if (actionButton != nil) {
-            [buttons addObject:actionButton];
-        }
-
 
 #if (READER_BOOKMARKS == TRUE) // Option
 //

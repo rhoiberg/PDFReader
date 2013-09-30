@@ -272,7 +272,7 @@
 
 - (void)thumbsView:(ReaderThumbsView *)thumbsView didSelectThumbWithIndex:(NSInteger)index
 {
-	[delegate thumbsViewController:self gotoIndex:index]; // Show the selected page
+	[delegate thumbsViewController:self gotoPage:index+1]; // Show the selected page
 
 	[delegate dismissThumbsViewController:self]; // Dismiss thumbs display
 }

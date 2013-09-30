@@ -78,7 +78,7 @@
 	return [self initWithFrame:frame document:nil];
 }
 
-- (void)updatePageThumbView:(NSInteger)index
+- (void)updatePageThumbView:(NSInteger)page
 {
 	NSInteger pages = [document.pageCount integerValue];
 
@@ -90,7 +90,7 @@
 
 		CGFloat stride = (useableWidth / (pages - 1)); // Page stride
 
-		NSInteger X = (stride * (index)); CGFloat pageThumbX = X;
+		NSInteger X = (stride * (page - 1)); CGFloat pageThumbX = X;
 
 		CGRect pageThumbRect = pageThumbView.frame; // Current frame
 
@@ -102,8 +102,7 @@
 		}
 	}
 
-	NSInteger page = [document.pageNumber integerValue];
-	if ((page != pageThumbView.tag) && pageThumbView) // Only if page number changed
+	if (page != pageThumbView.tag) // Only if page number changed
 	{
 		pageThumbView.tag = page; [pageThumbView reuse]; // Reuse the thumb view
 
@@ -111,7 +110,7 @@
 
 		NSURL *fileURL = document.fileURL; NSString *guid = document.guid; NSString *phrase = document.password;
 
-		ReaderThumbRequest *request = [ReaderThumbRequest newForView:pageThumbView fileURL:fileURL password:phrase guid:guid page:index size:size];
+		ReaderThumbRequest *request = [ReaderThumbRequest newForView:pageThumbView fileURL:fileURL password:phrase guid:guid page:page size:size];
 
 		UIImage *image = [[ReaderThumbCache sharedInstance] thumbRequest:request priority:YES]; // Request the thumb
 
@@ -201,7 +200,7 @@
 
 		document = object; // Retain the document object for our use
 
-		[self updatePageNumberText:[document.pageNumber integerValue]];
+		//[self updatePageNumberText:[document.pageNumber integerValue]];
 
 		miniThumbViews = [NSMutableDictionary new]; // Small thumbs
 	}
@@ -318,7 +317,7 @@
 
 	[self updatePageNumberText:page]; // Update page number text
 
-	[self updatePageThumbView:page-1]; // Update page thumb view
+	[self updatePageThumbView:page]; // Update page thumb view
 }
 
 - (void)updatePagebar
@@ -431,9 +430,9 @@
 
 	if (page != trackView.tag) // Only if the page number has changed
 	{
-		[self updatePageNumberText:page]; // Update page number text
+		//[self updatePageNumberText:page]; // Update page number text
 
-		[self updatePageThumbView:page]; // Update page thumb view
+		//[self updatePageThumbView:page]; // Update page thumb view
 
 		trackView.tag = page; // Update the page tracking tag
 
@@ -445,11 +444,12 @@
 {
 	[trackTimer invalidate]; trackTimer = nil; // Cleanup
 
-	if (trackView.tag != [document.pageNumber integerValue]) // Only if different
+	NSInteger newPage = trackView.tag + 1;
+	if (newPage != [document.pageNumber integerValue]) // Only if different
 	{
 		trackView.userInteractionEnabled = NO; // Disable track control interaction
 
-		[delegate pagebar:self gotoPage:trackView.tag]; // Go to document page
+		[delegate pagebar:self gotoPage:newPage]; // Go to document page
 
 		[self startEnableTimer]; // Start track control enable timer
 	}

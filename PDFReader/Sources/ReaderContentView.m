@@ -102,7 +102,7 @@ static inline CGFloat ZoomScaleThatFits(CGSize target, CGSize source)
         
         _pageNbr = page;
 
-		_theContentView = [[ReaderContentPage alloc] initWithURL:fileURL page:page+1 password:phrase];
+		_theContentView = [[ReaderContentPage alloc] initWithURL:fileURL page:page password:phrase];
 
 		if (_theContentView != nil) // Must have a valid and initialized content view
 		{

@@ -86,17 +86,16 @@
 	[mainToolbar setBookmarkState:bookmarked]; // Update
 }
 
-- (void)showDocumentIndex:(NSInteger)index
+- (void)showDocumentForPage:(NSInteger)page
 {
-	NSInteger page = index + 1;
 	assert(page <= [document.pageCount integerValue]);
 
-    if (page == currentPage) return;
+    //if (page == currentPage) return;
     UIPageViewControllerNavigationDirection direction= page > currentPage?
                                                         UIPageViewControllerNavigationDirectionForward:
                                                         UIPageViewControllerNavigationDirectionReverse;
 	
-    ReaderContentViewController *currentViewController = [self viewControllerAtIndex:index];
+    ReaderContentViewController *currentViewController = [self viewControllerForPage:page];
     _pageIsAnimating = NO;
     NSArray *viewControllers =
     [NSArray arrayWithObject:currentViewController];
@@ -120,7 +119,7 @@
 
 - (void)showDocument:(id)object
 {
-	[self showDocumentIndex:[document.pageNumber integerValue] - 1];
+	[self showDocumentForPage:[document.pageNumber integerValue]];
 
 	document.lastOpen = [NSDate date]; // Update last opened date
 
@@ -264,9 +263,10 @@
 - (void)viewWillAppear:(BOOL)animated
 {
 	[super viewWillAppear:animated];
+	mainPagebar.hidden = YES;
+	mainToolbar.hidden = YES;
     if (document != nil) {
-        NSInteger index = [document.pageNumber integerValue] - 1;
-        [self showDocumentIndex:index];
+        [self showDocumentForPage:[document.pageNumber integerValue]];
     }
 }
 
@@ -278,8 +278,6 @@
 	{
 		[self performSelector:@selector(showDocument:) withObject:nil afterDelay:0.02];
 	}
-	mainPagebar.hidden = YES;
-	mainToolbar.hidden = YES;
 
 #if (READER_DISABLE_IDLE == TRUE) // Option
 
@@ -459,7 +457,7 @@
 					{
 						NSInteger value = [target integerValue]; // Number
 
-						[self showDocumentIndex:value]; // Show the page
+						[self showDocumentForPage:value]; // Show the page
 					}
 				}
 			}
@@ -513,7 +511,7 @@
 		{
 			NSInteger page = [document.pageNumber integerValue]; // Current page #
 
-			ReaderContentView *targetView = (ReaderContentView *) [self viewControllerAtIndex:page].view;
+			ReaderContentView *targetView = (ReaderContentView *) [self viewControllerForPage:page].view;
             _pageIsAnimating = NO;
 
 			switch (recognizer.numberOfTouchesRequired) // Touches count
@@ -756,16 +754,16 @@
 	[self dismissViewControllerAnimated:NO completion:NULL]; // Dismiss
 }
 
-- (void)thumbsViewController:(ThumbsViewController *)viewController gotoIndex:(NSInteger)index
+- (void)thumbsViewController:(ThumbsViewController *)viewController gotoPage:(NSInteger)page
 {
-	[self showDocumentIndex:index]; // Show the page
+	[self showDocumentForPage:page]; // Show the page
 }
 
 #pragma mark ReaderMainPagebarDelegate methods
 
 - (void)pagebar:(ReaderMainPagebar *)pagebar gotoPage:(NSInteger)page
 {
-	[self showDocumentIndex:page]; // Show the page
+	[self showDocumentForPage:page]; // Show the page
 }
 
 #pragma mark UIApplication notification methods
@@ -782,11 +780,11 @@
 
 #pragma mark data source for UIPageViewController
 
-- (ReaderContentViewController *)viewControllerAtIndex:(NSUInteger)index
+- (ReaderContentViewController *)viewControllerForPage:(NSUInteger)page
 {
     // Return the data view controller for the given index.
     if (([document.pageCount intValue] == 0) ||
-        (index > [document.pageCount intValue])) {
+        (page > [document.pageCount intValue])) {
         return nil;
     }
     
@@ -796,7 +794,7 @@
     NSURL *fileURL = document.fileURL; NSString *phrase = document.password;
     CGRect viewRect = CGRectZero; viewRect.size = thePageViewController.view.bounds.size;
 
-    ReaderContentView *contentView = [[ReaderContentView alloc] initWithFrame:viewRect fileURL:fileURL page:index password:phrase];
+    ReaderContentView *contentView = [[ReaderContentView alloc] initWithFrame:viewRect fileURL:fileURL page:page password:phrase];
     
     contentView.message = self;
     
@@ -824,7 +822,7 @@
     }
     
     index--;
-    return [self viewControllerAtIndex:index];
+    return [self viewControllerForPage:index];
 }
 
 - (UIViewController *)pageViewController:
@@ -840,10 +838,10 @@
     }
     
     index++;
-    if (index >= [document.pageCount intValue]) {
+    if (index > [document.pageCount intValue]) {
         return nil;
     }
-    return [self viewControllerAtIndex:index];
+    return [self viewControllerForPage:index];
 }
 
 

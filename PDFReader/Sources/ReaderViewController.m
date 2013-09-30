@@ -256,6 +256,13 @@
     
 	mainPagebar.delegate = self;
     
+	self.mediaPlayer = [[MusicPlayerControlleriPad alloc] initWithNibName: @"MediaPlayerView" bundle: nil];
+    [self addChildViewController:self.mediaPlayer]; // "will" is called for us
+    self.mediaPlayer.view.frame = CGRectMake(214, 262, 320, 400);
+    [self.view addSubview:self.mediaPlayer.view];
+    // when we call "add", we must call "did" afterwards
+    [self.mediaPlayer didMoveToParentViewController:self];
+
 	[self.view addSubview:mainPagebar];
 
 	lastHideTime = [NSDate date];
@@ -470,6 +477,7 @@
 					{
 						[mainToolbar showToolbar];
                         [mainPagebar showPagebar]; // Show
+						[self.mediaPlayer showPlayer];
                         self.showStatusBar = NO;
                         [self setNeedsStatusBarAppearanceUpdate];
 					}
@@ -568,6 +576,7 @@
 		}
 
 		[mainToolbar hideToolbar]; [mainPagebar hidePagebar]; // Hide
+		[self.mediaPlayer hidePlayer];
         self.showStatusBar = YES;
         [self setNeedsStatusBarAppearanceUpdate];
 

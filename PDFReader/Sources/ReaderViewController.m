@@ -792,7 +792,7 @@
 		if ((result == MFMailComposeResultFailed) && (error != NULL)) NSLog(@"%@", error);
 	#endif
 
-	[self dismissViewControllerAnimated:YES completion:NULL]; // Dismiss
+	[self dismissViewControllerAnimated:YES completion:nil]; // Dismiss
 }
 
 #pragma mark ThumbsViewControllerDelegate methods
@@ -801,7 +801,7 @@
 {
 	[self updateToolbarBookmarkIcon]; // Update bookmark icon
 
-	[self dismissViewControllerAnimated:NO completion:NULL]; // Dismiss
+	[self dismissViewControllerAnimated:NO completion:nil]; // Dismiss
 }
 
 - (void)thumbsViewController:(ThumbsViewController *)viewController gotoPage:(NSInteger)page

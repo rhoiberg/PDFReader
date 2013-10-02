@@ -610,7 +610,7 @@
 #endif // end of READER_STANDALONE Option
 }
 
-- (void)tappedInToolbar:(ReaderMainToolbar *)toolbar thumbsButton:(UIButton *)button
+- (void)tappedInToolbar:(ReaderMainToolbar *)toolbar thumbsButton:(UIBarButtonItem *)button
 {
 	if (printInteraction != nil) [printInteraction dismissAnimated:NO]; // Dismiss
 
@@ -624,7 +624,7 @@
 	[self presentViewController:thumbsViewController animated:NO completion:NULL];
 }
 
-- (void)tappedInToolbar:(ReaderMainToolbar *)toolbar printButton:(UIButton *)button
+- (void)tappedInToolbar:(ReaderMainToolbar *)toolbar printButton:(UIBarButtonItem *)button
 {
 #if (READER_ENABLE_PRINT == TRUE) // Option
 

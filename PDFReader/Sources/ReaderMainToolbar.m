@@ -285,12 +285,12 @@
 	[delegate tappedInToolbar:self doneButton:button];
 }
 
-- (void)thumbsButtonTapped:(UIButton *)button
+- (void)thumbsButtonTapped:(UIBarButtonItem *)button
 {
 	[delegate tappedInToolbar:self thumbsButton:button];
 }
 
-- (void)printButtonTapped:(UIButton *)button
+- (void)printButtonTapped:(UIBarButtonItem *)button
 {
 	[delegate tappedInToolbar:self printButton:button];
 }

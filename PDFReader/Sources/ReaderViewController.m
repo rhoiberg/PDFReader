@@ -650,7 +650,7 @@
 
 			if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)
 			{
-				[printInteraction presentFromRect:button.bounds inView:button animated:YES completionHandler:
+				[printInteraction presentFromBarButtonItem:button animated:YES completionHandler:
 					^(UIPrintInteractionController *pic, BOOL completed, NSError *error)
 					{
 						#ifdef DEBUG

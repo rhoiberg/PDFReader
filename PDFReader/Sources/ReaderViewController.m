@@ -189,7 +189,7 @@
 
 	assert(document != nil); // Must have a valid ReaderDocument
 
-	self.view.backgroundColor = [UIColor scrollViewTexturedBackgroundColor];
+	self.view.backgroundColor = [UIColor colorWithRed:0.37f green:0.36f blue:0.40f alpha:1.0f];
 
 	CGRect viewRect = self.view.bounds; // View controller's view bounds
 

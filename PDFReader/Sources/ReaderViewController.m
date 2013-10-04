@@ -807,6 +807,11 @@
 - (void)thumbsViewController:(ThumbsViewController *)viewController gotoPage:(NSInteger)page
 {
 	[self showDocumentForPage:page]; // Show the page
+	[NSTimer scheduledTimerWithTimeInterval:2.0
+									 target:self
+								   selector:@selector(hideAll)
+								   userInfo:nil
+									repeats:NO];
 }
 
 #pragma mark ReaderMainPagebarDelegate methods
@@ -814,6 +819,12 @@
 - (void)pagebar:(ReaderMainPagebar *)pagebar gotoPage:(NSInteger)page
 {
 	[self showDocumentForPage:page]; // Show the page
+	
+	[NSTimer scheduledTimerWithTimeInterval:2.0
+									 target:self
+								   selector:@selector(hideAll)
+								   userInfo:nil
+									repeats:NO];
 }
 
 #pragma mark UIApplication notification methods

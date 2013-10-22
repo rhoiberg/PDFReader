@@ -768,7 +768,11 @@
 								   selector:@selector(hideAll)
 								   userInfo:nil
 									repeats:NO];
-	
+}
+
+- (NSString *) documentName
+{
+	return document.fileName;
 }
 
 - (void) hideAll

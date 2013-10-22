@@ -54,8 +54,6 @@
 
 	UIPrintInteractionController *printInteraction;
 
-	NSInteger currentPage;
-
 	CGSize lastAppearSize;
 
 	NSDate *lastHideTime;
@@ -91,8 +89,7 @@
 {
 	assert(page <= [document.pageCount integerValue]);
 
-    //if (page == currentPage) return;
-    UIPageViewControllerNavigationDirection direction= page > currentPage?
+    UIPageViewControllerNavigationDirection direction= page > [document.pageNumber integerValue]?
                                                         UIPageViewControllerNavigationDirectionForward:
                                                         UIPageViewControllerNavigationDirectionReverse;
 	
@@ -115,7 +112,6 @@
     
     [self updateToolbarBookmarkIcon]; // Update bookmark
     
-    currentPage = page; // Track current page number
 }
 
 - (void)showDocument:(id)object
@@ -322,7 +318,7 @@
 
 	thePageViewController = nil; lastHideTime = nil;
 
-	lastAppearSize = CGSizeZero; currentPage = 1;
+	lastAppearSize = CGSizeZero;
 
 	[super viewDidUnload];
 }
@@ -864,7 +860,7 @@
     return dataViewController;
 }
 
-- (NSUInteger)indexOfViewController:(ReaderContentViewController *)viewController
+- (NSUInteger)pageOfViewController:(ReaderContentViewController *)viewController
 {
     ReaderContentView *rv = (ReaderContentView *) viewController.view;
     return (rv.pageNbr);
@@ -876,14 +872,13 @@
 {
     if (_pageIsAnimating)
         return nil;
-    NSUInteger index = [self indexOfViewController:
+    NSUInteger page = [self pageOfViewController:
                         (ReaderContentViewController *)viewController];
-    if ((index == 1) || (index == NSNotFound)) {
+    if ((page == 1) || (page == NSNotFound))
         return nil;
-    }
     
-    index--;
-    return [self viewControllerForPage:index];
+    page--;
+    return [self viewControllerForPage:page];
 }
 
 - (UIViewController *)pageViewController:
@@ -892,43 +887,36 @@
     if (_pageIsAnimating)
         return nil;
     
-    NSUInteger index = [self indexOfViewController:
+    NSUInteger page = [self pageOfViewController:
                         (ReaderContentViewController *)viewController];
-    if (index == NSNotFound) {
+    if (page == NSNotFound)
         return nil;
-    }
     
-    index++;
-    if (index > [document.pageCount intValue]) {
+    page++;
+    if (page > [document.pageCount intValue])
         return nil;
-    }
-    return [self viewControllerForPage:index];
+
+    return [self viewControllerForPage:page];
 }
-
-
-//- (UIPageViewControllerSpineLocation)pageViewController:(UIPageViewController *)pageViewController
-//                   spineLocationForInterfaceOrientation:(UIInterfaceOrientation)orientation {
-//    _pageIsAnimating = NO;
-//}
 
 #pragma mark delegate for UIPageViewController
 
-- (void)pageViewController:(UIPageViewController *)pageViewController willTransitionToViewControllers:(NSArray *)pendingViewControllers {
-    ReaderContentViewController *rvc = (ReaderContentViewController *) [pendingViewControllers objectAtIndex:0];
-    ReaderContentView *rv = (ReaderContentView *)rvc.view;
-    
-    document.pageNumber = [NSNumber numberWithInt: rv.pageNbr];
+- (void)pageViewController:(UIPageViewController *)pageViewController willTransitionToViewControllers:(NSArray *)pendingViewControllers
+{
     _pageIsAnimating = YES;
-    [mainPagebar updatePagebar];
-    [self updateMarkButtonOnToolbar:mainToolbar];
 }
 
-- (void)pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray *)previousViewControllers transitionCompleted:(BOOL)completed{
-    
-    if(completed) {
+- (void)pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray *)previousViewControllers transitionCompleted:(BOOL)completed
+{
+	_pageIsAnimating = NO;
+
+    if(completed)
+	{
         _currentContentView = (ReaderContentView *)[(UIViewController *)[pageViewController.viewControllers lastObject] view];
-        _pageIsAnimating = NO;
-    }
+		document.pageNumber = [NSNumber numberWithInt: _currentContentView.pageNbr];
+		[mainPagebar updatePagebar];
+		[self updateMarkButtonOnToolbar:mainToolbar];
+   }
 }
 
 @end

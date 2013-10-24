@@ -210,6 +210,8 @@
 	doubleTapOne.numberOfTouchesRequired = 1; doubleTapOne.numberOfTapsRequired = 2; doubleTapOne.delegate = self;
 	[self.view addGestureRecognizer:doubleTapOne];
 
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willEnterForeground:) name:UIApplicationWillEnterForegroundNotification object:nil];
+
 	UITapGestureRecognizer *doubleTapTwo = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleDoubleTap:)];
 	doubleTapTwo.numberOfTouchesRequired = 2; doubleTapTwo.numberOfTapsRequired = 2; doubleTapTwo.delegate = self;
 	[self.view addGestureRecognizer:doubleTapTwo];
@@ -586,6 +588,7 @@
 {
 #if (READER_STANDALONE == FALSE) // Option
 
+	[self.mediaPlayer stopPlayer];
 	[document saveReaderDocument]; // Save any ReaderDocument object changes
 
 	[[ReaderThumbQueue sharedInstance] cancelOperationsWithGUID:document.guid];
@@ -755,6 +758,11 @@
 		}
 		[self.popover presentPopoverFromBarButtonItem:button permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
 	}
+}
+
+- (void) willEnterForeground:(NSNotification *) n
+{
+	[self showDocumentForPage:[document.pageNumber integerValue]];
 }
 
 #pragma mark MusicTableViewControllerDelegate methods

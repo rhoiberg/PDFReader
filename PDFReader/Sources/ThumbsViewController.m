@@ -90,7 +90,7 @@
 
 	assert(delegate != nil); assert(document != nil);
 
-	self.view.backgroundColor = [UIColor colorWithRed:0.37f green:0.36f blue:0.40f alpha:1.0f];
+	self.view.backgroundColor = [UIColor colorWithRed:0.8f green:0.8f blue:0.8f alpha:1.0f];
 
 	CGRect viewRect = self.view.bounds; // View controller's view bounds
 

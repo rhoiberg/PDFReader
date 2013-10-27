@@ -34,6 +34,7 @@
 #import "ReaderThumbQueue.h"
 #import "ReaderContentPage.h"
 #import "MusicPlayerControlleriPad.h"
+#import <AirTurnInterface/AirTurnInterface.h>
 
 #import <MessageUI/MessageUI.h>
 
@@ -185,7 +186,7 @@
 
 	assert(document != nil); // Must have a valid ReaderDocument
 
-	self.view.backgroundColor = [UIColor colorWithRed:0.37f green:0.36f blue:0.40f alpha:1.0f];
+	self.view.backgroundColor = [UIColor colorWithRed:0.8f green:0.8f blue:0.8f alpha:1.0f];
 
 	CGRect viewRect = self.view.bounds; // View controller's view bounds
 
@@ -231,19 +232,10 @@
     thePageViewController.dataSource = self;
     thePageViewController.delegate = self;
     
-    //create content for pageViewController
-    //ReaderContentViewController *initialViewController = [self viewControllerAtIndex:0];
-//    NSArray *viewControllers =
-//    [NSArray arrayWithObject:initialViewController];
-//
-//    [thePageViewController setViewControllers:viewControllers
-//                          direction:UIPageViewControllerNavigationDirectionForward
-//                           animated:NO
-//                         completion:nil];
-//    
-//    
-    //[[thePageView view] setFrame:[[self view] bounds]];
-    [[self view] addSubview:[thePageViewController view]];
+
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(AirTurnEvent:) name:AirTurnButtonNotification object:nil];
+
+	[[self view] addSubview:[thePageViewController view]];
     [thePageViewController didMoveToParentViewController:self];
     
     CGRect pagebarRect = viewRect;
@@ -765,6 +757,37 @@
 	[self showDocumentForPage:[document.pageNumber integerValue]];
 }
 
+#pragma mark - Airturn
+
+- (void)AirTurnEvent:(NSNotification *)notification
+{
+    AirTurnPort button = [(NSNumber *)[[notification userInfo] objectForKey:AirTurnButtonPressedKey] intValue];
+    NSLog(@"Port: %d", button);
+    
+    switch (button) {
+        case AirTurnPort1:
+            break;
+			
+        case AirTurnPort2:
+            break;
+			
+        case AirTurnPort3:
+            break;
+			
+        case AirTurnPort4:
+            break;
+			
+        case AirTurnPort5:
+            break;
+			
+        case AirTurnPort6:
+			break;
+			
+        default:
+			break;
+    }
+}
+	
 #pragma mark MusicTableViewControllerDelegate methods
 
 - (void) playSong:(MPMediaItem *)song

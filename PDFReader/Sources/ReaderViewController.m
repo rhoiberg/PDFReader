@@ -38,6 +38,10 @@
 
 #import <MessageUI/MessageUI.h>
 
+typedef enum {
+    AirTurnShowPlayer = 100,
+} AirTurnGigTracks;
+
 @interface ReaderViewController () <UIGestureRecognizerDelegate, MFMailComposeViewControllerDelegate,
 									ReaderMainToolbarDelegate, ReaderMainPagebarDelegate, ReaderContentViewDelegate, ThumbsViewControllerDelegate>
 @end
@@ -60,6 +64,7 @@
 	NSDate *lastHideTime;
 
 	BOOL isVisible;
+	NSDictionary *airTurnEvents;
 }
 
 #pragma mark Constants
@@ -764,14 +769,40 @@
     AirTurnPort button = [(NSNumber *)[[notification userInfo] objectForKey:AirTurnButtonPressedKey] intValue];
     NSLog(@"Port: %d", button);
     
-    switch (button) {
+    switch (button)
+	{
         case AirTurnPort1:
+		{
+			if (!airTurnEvents)
+			{
+				airTurnEvents =  @{@"event":@1};
+				self.airTurnTimer = [NSTimer scheduledTimerWithTimeInterval:.5
+																	 target:self
+																   selector:@selector(handelAirTurnTimer:)
+																   userInfo:nil repeats:NO];
+			}
+			else
+			{
+				NSInteger lastEvent = [[airTurnEvents objectForKey:@"event"] integerValue];
+				if (lastEvent == 1)
+					airTurnEvents =  @{@"event":@100};
+			}
+				
+		}
             break;
 			
         case AirTurnPort2:
             break;
 			
         case AirTurnPort3:
+			if (!airTurnEvents)
+			{
+				airTurnEvents =  @{@"event":@3};
+				self.airTurnTimer = [NSTimer scheduledTimerWithTimeInterval:.5
+																	 target:self
+																   selector:@selector(handelAirTurnTimer:)
+																   userInfo:nil repeats:NO];
+			}
             break;
 			
         case AirTurnPort4:
@@ -787,7 +818,32 @@
 			break;
     }
 }
+
+- (void)handelAirTurnTimer:(NSTimer *)theTimer
+{
+	NSInteger airEvent = [[airTurnEvents objectForKey:@"event"] integerValue];
 	
+	switch (airEvent)
+	{
+		case AirTurnPort1:
+			if ([document.pageNumber integerValue] < [document.pageCount integerValue])
+				[self showDocumentForPage:[document.pageNumber integerValue]+1];
+			break;
+
+		case AirTurnPort3:
+			if ([document.pageNumber integerValue] > 1)
+				[self showDocumentForPage:[document.pageNumber integerValue]-1];
+			break;
+		
+		case AirTurnShowPlayer:
+			[self.mediaPlayer showPlayer];
+			break;
+
+	}
+	
+	airTurnEvents = nil;
+}
+
 #pragma mark MusicTableViewControllerDelegate methods
 
 - (void) playSong:(MPMediaItem *)song

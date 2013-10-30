@@ -48,6 +48,7 @@
 @property (assign) BOOL    showStatusBar;
 @property (nonatomic, strong) UIPopoverController  *popover;
 @property (nonatomic, strong) MusicPlayerControlleriPad  *mediaPlayer;
+@property (nonatomic, strong) NSTimer *airTurnTimer;
 
 - (void)tappedInToolbar:(UIButton *)button;
 - (id)initWithReaderDocument:(ReaderDocument *)object withActionButton:(UIBarButtonItem *)button;

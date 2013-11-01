@@ -29,11 +29,12 @@
 #import "CommonBundle.h"
 
 #import <MessageUI/MessageUI.h>
+#import <AirTurnInterface/AirTurnInterface.h>
 
 @implementation ReaderMainToolbar
 {
 	UIButton *markButton;
-
+	UIImageView *airTurnImage;
 	UIImage *markImageN;
 	UIImage *markImageY;
 }
@@ -199,7 +200,11 @@
 			titleLabel.text = [object.fileName stringByDeletingPathExtension];
 		}
 	}
-    
+	
+    airTurnImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"airturn-off.png"]];
+	UIBarButtonItem *airTurnButtonItem = [[UIBarButtonItem alloc] initWithCustomView:airTurnImage];
+	[buttons addObject:airTurnButtonItem];
+
     self.items = [buttons copy];
 	return self;
 }
@@ -239,6 +244,17 @@
 	if (markButton.enabled == NO) markButton.enabled = YES;
 
 #endif // end of READER_BOOKMARKS Option
+}
+
+- (void)viewDidLoad
+{
+	void (^connectedStateChanged)(NSNotification *note) = ^(NSNotification *note)
+	{
+        airTurnImage.image = [UIImage imageNamed:([AirTurnInterface sharedInterface].AirTurnConnected ? @"airturn-on.png" : @"airturn-off.png")];
+    };
+	
+    [[NSNotificationCenter defaultCenter] addObserverForName:AirTurnConnectedStateChangedNotification
+													  object:nil queue:nil usingBlock:connectedStateChanged];
 }
 
 - (void)hideToolbar

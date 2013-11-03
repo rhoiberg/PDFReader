@@ -37,7 +37,6 @@
 #import <AirTurnInterface/AirTurnInterface.h>
 #import "AirTurnHelper.h"
 #import "CurrentQueue.h"
-
 #import <MessageUI/MessageUI.h>
 
 
@@ -235,6 +234,8 @@
     thePageViewController.dataSource = self;
     thePageViewController.delegate = self;
     
+    [AirTurnInterface sharedInterface].parentView = self.view;
+	[AirTurnInterface sharedInterface].enabled = YES;
 
 	[[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(AirTurnEvent:)
@@ -247,7 +248,6 @@
 											 selector:@selector(mediaPlayerDidHide)
 												 name:kMediaPlayerDidHide object:nil];
 
-	
 	[[self view] addSubview:[thePageViewController view]];
     [thePageViewController didMoveToParentViewController:self];
     
@@ -478,10 +478,20 @@
 				{
 					if ((mainToolbar.hidden == YES) || (mainPagebar.hidden == YES))
 					{
-						[mainToolbar showToolbar];
-                        [mainPagebar showPagebar]; // Show
 						if (self.mediaPlayer.isPlaying)
+						{
+							[mainToolbar showToolbar];
+							[mainPagebar showPagebar]; // Show
 							[self.mediaPlayer showPlayer];
+						}
+						else if (self.mediaPlayer.playerIsShowing)
+							[self.mediaPlayer hidePlayer];
+						else
+						{
+							[mainToolbar showToolbar];
+							[mainPagebar showPagebar]; // Show
+						}
+
                         self.showStatusBar = NO;
                         [self setNeedsStatusBarAppearanceUpdate];
 					}
@@ -781,27 +791,37 @@
 {
 	NSDictionary *airTurnEvents = [notification object];
 	NSInteger airEvent = [[airTurnEvents objectForKey:@"event"] integerValue];
-	
-	switch (airEvent)
-	{
-		case AirTurnPort1:
-			if ([document.pageNumber integerValue] > 1)
-				[self showDocumentForPage:[document.pageNumber integerValue]-1];
-			else
-				[self showDocumentForPage:[document.pageCount integerValue]];
-			break;
 
-		case AirTurnPort3:
-			if ([document.pageNumber integerValue] < [document.pageCount integerValue])
-				[self showDocumentForPage:[document.pageNumber integerValue]+1];
-			else
-				[self showDocumentForPage:1];
-			break;
-		
-		case AirTurnShowPlayer:
-			[self showPlayer];
-			break;
+	if (self.mediaPlayer.playerIsShowing)
+		[self.mediaPlayer handleAirTurnEvent:airEvent];
+	else
+	{
+		switch (airEvent)
+		{
+			case AirTurnPort1:
+				if ([document.pageCount integerValue] == 1)
+					return;
+				if ([document.pageNumber integerValue] > 1)
+					[self showDocumentForPage:[document.pageNumber integerValue]-1];
+				else
+					[self showDocumentForPage:[document.pageCount integerValue]];
+				break;
+				
+			case AirTurnPort3:
+				if ([document.pageCount integerValue] == 1)
+					return;
+				if ([document.pageNumber integerValue] < [document.pageCount integerValue])
+					[self showDocumentForPage:[document.pageNumber integerValue]+1];
+				else
+					[self showDocumentForPage:1];
+				break;
+				
+			case AirTurnShowPlayer:
+				[self showPlayer];
+				break;
+		}
 	}
+	
 }
 
 #pragma mark MusicTableViewControllerDelegate methods
@@ -819,27 +839,26 @@
 
 - (void) showPlayer
 {
-	[[NSNotificationCenter defaultCenter] removeObserver:self name:AirTurnButtonNotification object:nil];
-	[[NSNotificationCenter defaultCenter] removeObserver:self name:kHandleAirTurnEvent object:nil];
 	if (self.mediaPlayer.isPlaying)
 		[self.mediaPlayer showPlayer];
 	else
 		{
 			CurrentQueue* songQueue = [[CurrentQueue alloc] initWithName:[self documentName]];
-			[self.mediaPlayer presentPlayer:songQueue];
+			if (songQueue.count > 0)
+				[self.mediaPlayer presentPlayer:songQueue];
+			else
+			{
+				[[[UIAlertView alloc] initWithTitle:@"Error" message:@"Can not show the music player because there are is no music in the Songbook playlist. Tap on the screen and select Player in the navigation bar at the top to add music."
+										   delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil]
+				 show];
+			}
 		}
 }
 
 - (void)mediaPlayerDidHide
 {
-	[self hideReader];
+ 	[self hideReader];
 	[self showDocumentForPage:[document.pageNumber integerValue]];
-	[[NSNotificationCenter defaultCenter] addObserver:self
-											 selector:@selector(AirTurnEvent:)
-												 name:AirTurnButtonNotification object:nil];
-	[[NSNotificationCenter defaultCenter] addObserver:self
-											 selector:@selector(handleAirTurnEvent:)
-												 name:kHandleAirTurnEvent object:nil];
 }
 
 - (NSString *) documentName

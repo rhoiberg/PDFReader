@@ -71,7 +71,15 @@
 
     CommonBundle *pdfBundle = [CommonBundle pdfResourcesBundle];
 	
-    UIBarButtonItem *spaceItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:NULL];
+ 	void (^connectedStateChanged)(NSNotification *note) = ^(NSNotification *note)
+	{
+        airTurnImage.image = [UIImage imageNamed:([AirTurnInterface sharedInterface].AirTurnConnected ? @"airturn-on.png" : @"airturn-off.png")];
+    };
+	
+    [[NSNotificationCenter defaultCenter] addObserverForName:AirTurnConnectedStateChangedNotification
+													  object:nil queue:nil usingBlock:connectedStateChanged];
+	
+   UIBarButtonItem *spaceItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:NULL];
     NSMutableArray *buttons;
 
 	if ((self = [super initWithFrame:frame]))
@@ -200,8 +208,8 @@
 			titleLabel.text = [object.fileName stringByDeletingPathExtension];
 		}
 	}
-	
-    airTurnImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"airturn-off.png"]];
+    airTurnImage = [[UIImageView alloc] initWithImage:
+					[UIImage imageNamed:([AirTurnInterface sharedInterface].AirTurnConnected ? @"airturn-on.png" : @"airturn-off.png")]];
 	UIBarButtonItem *airTurnButtonItem = [[UIBarButtonItem alloc] initWithCustomView:airTurnImage];
 	[buttons addObject:airTurnButtonItem];
 
@@ -246,17 +254,6 @@
 #endif // end of READER_BOOKMARKS Option
 }
 
-- (void)viewDidLoad
-{
-	void (^connectedStateChanged)(NSNotification *note) = ^(NSNotification *note)
-	{
-        airTurnImage.image = [UIImage imageNamed:([AirTurnInterface sharedInterface].AirTurnConnected ? @"airturn-on.png" : @"airturn-off.png")];
-    };
-	
-    [[NSNotificationCenter defaultCenter] addObserverForName:AirTurnConnectedStateChangedNotification
-													  object:nil queue:nil usingBlock:connectedStateChanged];
-}
-
 - (void)hideToolbar
 {
 	if (self.hidden == NO)
@@ -292,6 +289,7 @@
 			completion:NULL
 		];
 	}
+	airTurnImage.image = [UIImage imageNamed:([AirTurnInterface sharedInterface].AirTurnConnected ? @"airturn-on.png" : @"airturn-off.png")];
 }
 
 #pragma mark UIButton action methods

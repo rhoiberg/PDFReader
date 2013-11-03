@@ -35,12 +35,10 @@
 #import "ReaderContentPage.h"
 #import "MusicPlayerControlleriPad.h"
 #import <AirTurnInterface/AirTurnInterface.h>
+#import "AirTurnHelper.h"
 
 #import <MessageUI/MessageUI.h>
 
-typedef enum {
-    AirTurnShowPlayer = 100,
-} AirTurnGigTracks;
 
 @interface ReaderViewController () <UIGestureRecognizerDelegate, MFMailComposeViewControllerDelegate,
 									ReaderMainToolbarDelegate, ReaderMainPagebarDelegate, ReaderContentViewDelegate, ThumbsViewControllerDelegate>
@@ -64,7 +62,6 @@ typedef enum {
 	NSDate *lastHideTime;
 
 	BOOL isVisible;
-	NSDictionary *airTurnEvents;
 }
 
 #pragma mark Constants
@@ -238,8 +235,18 @@ typedef enum {
     thePageViewController.delegate = self;
     
 
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(AirTurnEvent:) name:AirTurnButtonNotification object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(AirTurnEvent:)
+												 name:AirTurnButtonNotification object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(handleAirTurnEvent:)
+												 name:kHandleAirTurnEvent object:nil];
 
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(mediaPlayerDidHide)
+												 name:kMediaPlayerDidHide object:nil];
+
+	
 	[[self view] addSubview:[thePageViewController view]];
     [thePageViewController didMoveToParentViewController:self];
     
@@ -472,7 +479,8 @@ typedef enum {
 					{
 						[mainToolbar showToolbar];
                         [mainPagebar showPagebar]; // Show
-						[self.mediaPlayer showPlayer];
+						if (self.mediaPlayer.isPlaying)
+							[self.mediaPlayer showPlayer];
                         self.showStatusBar = NO;
                         [self setNeedsStatusBarAppearanceUpdate];
 					}
@@ -570,8 +578,7 @@ typedef enum {
 			if (CGRectContainsPoint(areaRect, point) == false) return;
 		}
 
-		[mainToolbar hideToolbar]; [mainPagebar hidePagebar]; // Hide
-		[self.mediaPlayer hidePlayer];
+		[self hideAll];
         self.showStatusBar = YES;
         [self setNeedsStatusBarAppearanceUpdate];
 
@@ -766,95 +773,62 @@ typedef enum {
 
 - (void)AirTurnEvent:(NSNotification *)notification
 {
-    AirTurnPort button = [(NSNumber *)[[notification userInfo] objectForKey:AirTurnButtonPressedKey] intValue];
-    NSLog(@"Port: %d", button);
-    
-    switch (button)
-	{
-        case AirTurnPort1:
-		{
-			if (!airTurnEvents)
-			{
-				airTurnEvents =  @{@"event":@1};
-				self.airTurnTimer = [NSTimer scheduledTimerWithTimeInterval:.5
-																	 target:self
-																   selector:@selector(handelAirTurnTimer:)
-																   userInfo:nil repeats:NO];
-			}
-			else
-			{
-				NSInteger lastEvent = [[airTurnEvents objectForKey:@"event"] integerValue];
-				if (lastEvent == 1)
-					airTurnEvents =  @{@"event":@100};
-			}
-				
-		}
-            break;
-			
-        case AirTurnPort2:
-            break;
-			
-        case AirTurnPort3:
-			if (!airTurnEvents)
-			{
-				airTurnEvents =  @{@"event":@3};
-				self.airTurnTimer = [NSTimer scheduledTimerWithTimeInterval:.5
-																	 target:self
-																   selector:@selector(handelAirTurnTimer:)
-																   userInfo:nil repeats:NO];
-			}
-            break;
-			
-        case AirTurnPort4:
-            break;
-			
-        case AirTurnPort5:
-            break;
-			
-        case AirTurnPort6:
-			break;
-			
-        default:
-			break;
-    }
+	[[AirTurnHelper sharedHelper] handleAirTurnNotification:notification];
 }
 
-- (void)handelAirTurnTimer:(NSTimer *)theTimer
+- (void)handleAirTurnEvent:(NSNotification *)notification
 {
+	NSDictionary *airTurnEvents = [notification object];
 	NSInteger airEvent = [[airTurnEvents objectForKey:@"event"] integerValue];
 	
 	switch (airEvent)
 	{
 		case AirTurnPort1:
-			if ([document.pageNumber integerValue] < [document.pageCount integerValue])
-				[self showDocumentForPage:[document.pageNumber integerValue]+1];
-			break;
-
-		case AirTurnPort3:
 			if ([document.pageNumber integerValue] > 1)
 				[self showDocumentForPage:[document.pageNumber integerValue]-1];
 			break;
+
+		case AirTurnPort3:
+			if ([document.pageNumber integerValue] < [document.pageCount integerValue])
+				[self showDocumentForPage:[document.pageNumber integerValue]+1];
+			break;
 		
 		case AirTurnShowPlayer:
-			[self.mediaPlayer showPlayer];
+			[self showPlayer];
 			break;
-
 	}
-	
-	airTurnEvents = nil;
 }
 
 #pragma mark MusicTableViewControllerDelegate methods
 
-- (void) playSong:(MPMediaItem *)song
+- (void) playSong:(CurrentQueue *)songQueue index:(NSInteger)index
 {
-	[self.mediaPlayer playSong:song];
+	[self.mediaPlayer playSong:songQueue index:index];
 	[self.popover dismissPopoverAnimated:YES];
 	[NSTimer scheduledTimerWithTimeInterval:2.0
 									 target:self
 								   selector:@selector(hideAll)
 								   userInfo:nil
 									repeats:NO];
+}
+
+- (void) showPlayer
+{
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:AirTurnButtonNotification object:nil];
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:kHandleAirTurnEvent object:nil];
+	[self.mediaPlayer showPlayer];
+}
+
+- (void)mediaPlayerDidHide
+{
+	[self hideReader];
+	[self showDocumentForPage:[document.pageNumber integerValue]];
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(AirTurnEvent:)
+												 name:AirTurnButtonNotification object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(handleAirTurnEvent:)
+												 name:kHandleAirTurnEvent object:nil];
 }
 
 - (NSString *) documentName
@@ -864,10 +838,15 @@ typedef enum {
 
 - (void) hideAll
 {
+	[self hideReader];
+	[self.mediaPlayer hidePlayer];
+}
+
+- (void) hideReader
+{
 	[mainToolbar hideToolbar];
 	[mainPagebar hidePagebar]; // Hide
-	[self.mediaPlayer hidePlayer];
-	
+
 	lastHideTime = [NSDate new];
 }
 

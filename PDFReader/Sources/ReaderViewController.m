@@ -36,6 +36,7 @@
 #import "MusicPlayerControlleriPad.h"
 #import <AirTurnInterface/AirTurnInterface.h>
 #import "AirTurnHelper.h"
+#import "CurrentQueue.h"
 
 #import <MessageUI/MessageUI.h>
 
@@ -786,11 +787,15 @@
 		case AirTurnPort1:
 			if ([document.pageNumber integerValue] > 1)
 				[self showDocumentForPage:[document.pageNumber integerValue]-1];
+			else
+				[self showDocumentForPage:[document.pageCount integerValue]];
 			break;
 
 		case AirTurnPort3:
 			if ([document.pageNumber integerValue] < [document.pageCount integerValue])
 				[self showDocumentForPage:[document.pageNumber integerValue]+1];
+			else
+				[self showDocumentForPage:1];
 			break;
 		
 		case AirTurnShowPlayer:
@@ -816,7 +821,13 @@
 {
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:AirTurnButtonNotification object:nil];
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:kHandleAirTurnEvent object:nil];
-	[self.mediaPlayer showPlayer];
+	if (self.mediaPlayer.isPlaying)
+		[self.mediaPlayer showPlayer];
+	else
+		{
+			CurrentQueue* songQueue = [[CurrentQueue alloc] initWithName:[self documentName]];
+			[self.mediaPlayer presentPlayer:songQueue];
+		}
 }
 
 - (void)mediaPlayerDidHide

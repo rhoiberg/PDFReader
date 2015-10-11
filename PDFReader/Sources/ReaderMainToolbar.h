@@ -44,7 +44,7 @@
 
 @interface ReaderMainToolbar : UIXToolbarView
 
-@property (nonatomic, unsafe_unretained, readwrite) id <ReaderMainToolbarDelegate> delegate;
+@property (nonatomic, weak, readwrite) id <ReaderMainToolbarDelegate> delegate;
 
 - (id)initWithFrame:(CGRect)frame document:(ReaderDocument *)object withActionButton:actionButton;
 

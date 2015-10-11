@@ -44,7 +44,7 @@
 
 - (id)initWithFilePath:(NSString *)fullFilePath password:(NSString *)phrase;
 
-- (void)saveReaderDocument;
+- (BOOL)archiveDocumentProperties;
 
 - (void)updateProperties;
 

@@ -34,7 +34,7 @@
 #import "ReaderThumbQueue.h"
 #import "ReaderContentPage.h"
 #import "MusicPlayerControlleriPad.h"
-#import <AirTurnInterface/AirTurnInterface.h>
+#import <AirTurnInterface/AirTurnManager.h>
 #import "AirTurnHelper.h"
 #import "CurrentQueue.h"
 #import <MessageUI/MessageUI.h>
@@ -234,12 +234,9 @@
     thePageViewController.dataSource = self;
     thePageViewController.delegate = self;
     
-    [AirTurnInterface sharedInterface].parentView = self.view;
-	[AirTurnInterface sharedInterface].enabled = YES;
+	[AirTurnViewManager sharedViewManager].enabled = YES;
 
-	[[NSNotificationCenter defaultCenter] addObserver:self
-											 selector:@selector(AirTurnEvent:)
-												 name:AirTurnButtonNotification object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(airTurnEvent:) name:AirTurnPedalPressNotification object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(handleAirTurnEvent:)
 												 name:kHandleAirTurnEvent object:nil];
@@ -396,7 +393,7 @@
 		if (page > minPage)
 		{
             thePageViewController.view.tag = (page - 1); // Increment page number
-            document.pageNumber = [NSNumber numberWithInt:page-1];
+            document.pageNumber = [NSNumber numberWithLong:page-1];
             [self updateMarkButtonOnToolbar:mainToolbar];
 		}
 	}
@@ -412,7 +409,7 @@
 		if (page < maxPage)
 		{
 			thePageViewController.view.tag = (page + 1); // Increment page number
-            document.pageNumber = [NSNumber numberWithInt:page+1];
+            document.pageNumber = [NSNumber numberWithLong:page+1];
             [self updateMarkButtonOnToolbar:mainToolbar];
 		}
 	}
@@ -777,12 +774,14 @@
 
 - (void) willEnterForeground:(NSNotification *) n
 {
-	[self showDocumentForPage:[document.pageNumber integerValue]];
+	//[self showDocumentForPage:[document.pageNumber integerValue]];
+    [[_currentContentView getContentView] setNeedsDisplay];
+
 }
 
 #pragma mark - Airturn
 
-- (void)AirTurnEvent:(NSNotification *)notification
+- (void)airTurnEvent:(NSNotification *)notification
 {
 	[[AirTurnHelper sharedHelper] handleAirTurnNotification:notification];
 }
@@ -858,7 +857,7 @@
 - (void)mediaPlayerDidHide
 {
  	[self hideReader];
-	[self showDocumentForPage:[document.pageNumber integerValue]];
+    [[_currentContentView getContentView] setNeedsDisplay];
 }
 
 - (NSString *) documentName
@@ -1013,7 +1012,7 @@
     if(completed)
 	{
         _currentContentView = (ReaderContentView *)[(UIViewController *)[pageViewController.viewControllers lastObject] view];
-		document.pageNumber = [NSNumber numberWithInt: _currentContentView.pageNbr];
+		document.pageNumber = [NSNumber numberWithLong: _currentContentView.pageNbr];
 		[mainPagebar updatePagebar];
 		[self updateMarkButtonOnToolbar:mainToolbar];
    }

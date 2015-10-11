@@ -62,7 +62,7 @@
 
 		for (ReaderDocumentLink *link in _links) // Enumerate the links array
 		{
-            int index = [_links indexOfObject:link];
+            NSUInteger index = [_links indexOfObject:link];
             UILabel *highlight = [[UILabel alloc] initWithFrame:link.rect];            
             highlight.backgroundColor = hilite; // Color
             highlight.tag = index;                

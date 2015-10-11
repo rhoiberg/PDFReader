@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		86133731178B546B004B6339 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86133730178B546B004B6339 /* Foundation.framework */; };
 		86133736178B546B004B6339 /* PDFReader.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 86133735178B546B004B6339 /* PDFReader.h */; };
 		86133738178B546B004B6339 /* PDFReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 86133737178B546B004B6339 /* PDFReader.m */; };
 		86133781178B5541004B6339 /* CGPDFDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 8613375A178B5541004B6339 /* CGPDFDocument.m */; };
@@ -29,6 +30,11 @@
 		86133792178B5541004B6339 /* ThumbsMainToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 8613377C178B5541004B6339 /* ThumbsMainToolbar.m */; };
 		86133793178B5541004B6339 /* ThumbsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8613377E178B5541004B6339 /* ThumbsViewController.m */; };
 		86133794178B5541004B6339 /* UIXToolbarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 86133780178B5541004B6339 /* UIXToolbarView.m */; };
+		8613379F178B55DB004B6339 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8613379D178B55B7004B6339 /* ImageIO.framework */; };
+		861337A0178B55DB004B6339 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8613379B178B55AC004B6339 /* MessageUI.framework */; };
+		861337A1178B55DB004B6339 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86133799178B55A2004B6339 /* QuartzCore.framework */; };
+		861337A2178B55DB004B6339 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86133797178B5590004B6339 /* CoreGraphics.framework */; };
+		861337A3178B55DB004B6339 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86133795178B5586004B6339 /* UIKit.framework */; };
 		867C7E4C178CACC400DD3523 /* ReaderContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 867C7E4B178C9E8300DD3523 /* ReaderContentViewController.m */; };
 		867C7E4D178CACCF00DD3523 /* ReaderContentViewController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 867C7E4A178C9E8300DD3523 /* ReaderContentViewController.h */; };
 		86BD0FFA178B6BCA00C1AEF4 /* CGPDFDocument.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 86133759178B5541004B6339 /* CGPDFDocument.h */; };
@@ -65,20 +71,6 @@
 		86BD101F178B6C1400C1AEF4 /* Reader-Print@2x.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 86133750178B5541004B6339 /* Reader-Print@2x.png */; };
 		86BD1020178B6C1400C1AEF4 /* Reader-Thumbs.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 86133751178B5541004B6339 /* Reader-Thumbs.png */; };
 		86BD1021178B6C1400C1AEF4 /* Reader-Thumbs@2x.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 86133752178B5541004B6339 /* Reader-Thumbs@2x.png */; };
-		A1373DBB17F8979100E46EA5 /* Reader-Button-H.png in Resources */ = {isa = PBXBuildFile; fileRef = 86133745178B5541004B6339 /* Reader-Button-H.png */; };
-		A1373DBC17F8979100E46EA5 /* Reader-Button-H@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 86133746178B5541004B6339 /* Reader-Button-H@2x.png */; };
-		A1373DBD17F8979100E46EA5 /* Reader-Button-N.png in Resources */ = {isa = PBXBuildFile; fileRef = 86133747178B5541004B6339 /* Reader-Button-N.png */; };
-		A1373DBE17F8979100E46EA5 /* Reader-Button-N@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 86133748178B5541004B6339 /* Reader-Button-N@2x.png */; };
-		A1373DBF17F8979100E46EA5 /* Reader-Email.png in Resources */ = {isa = PBXBuildFile; fileRef = 86133749178B5541004B6339 /* Reader-Email.png */; };
-		A1373DC017F8979100E46EA5 /* Reader-Email@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8613374A178B5541004B6339 /* Reader-Email@2x.png */; };
-		A1373DC117F8979100E46EA5 /* Reader-Mark-N.png in Resources */ = {isa = PBXBuildFile; fileRef = 8613374B178B5541004B6339 /* Reader-Mark-N.png */; };
-		A1373DC217F8979100E46EA5 /* Reader-Mark-N@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8613374C178B5541004B6339 /* Reader-Mark-N@2x.png */; };
-		A1373DC317F8979100E46EA5 /* Reader-Mark-Y.png in Resources */ = {isa = PBXBuildFile; fileRef = 8613374D178B5541004B6339 /* Reader-Mark-Y.png */; };
-		A1373DC417F8979100E46EA5 /* Reader-Mark-Y@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8613374E178B5541004B6339 /* Reader-Mark-Y@2x.png */; };
-		A1373DC517F8979100E46EA5 /* Reader-Print.png in Resources */ = {isa = PBXBuildFile; fileRef = 8613374F178B5541004B6339 /* Reader-Print.png */; };
-		A1373DC617F8979100E46EA5 /* Reader-Print@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 86133750178B5541004B6339 /* Reader-Print@2x.png */; };
-		A1373DC717F8979100E46EA5 /* Reader-Thumbs.png in Resources */ = {isa = PBXBuildFile; fileRef = 86133751178B5541004B6339 /* Reader-Thumbs.png */; };
-		A1373DC817F8979100E46EA5 /* Reader-Thumbs@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 86133752178B5541004B6339 /* Reader-Thumbs@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -140,6 +132,7 @@
 
 /* Begin PBXFileReference section */
 		8613372D178B546B004B6339 /* libPDFReader.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPDFReader.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		86133730178B546B004B6339 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		86133734178B546B004B6339 /* PDFReader-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PDFReader-Prefix.pch"; sourceTree = "<group>"; };
 		86133735178B546B004B6339 /* PDFReader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PDFReader.h; sourceTree = "<group>"; };
 		86133737178B546B004B6339 /* PDFReader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PDFReader.m; sourceTree = "<group>"; };
@@ -200,12 +193,16 @@
 		8613377E178B5541004B6339 /* ThumbsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThumbsViewController.m; sourceTree = "<group>"; };
 		8613377F178B5541004B6339 /* UIXToolbarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIXToolbarView.h; path = ../Sources/UIXToolbarView.h; sourceTree = "<group>"; };
 		86133780178B5541004B6339 /* UIXToolbarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIXToolbarView.m; sourceTree = "<group>"; };
+		86133795178B5586004B6339 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		86133797178B5590004B6339 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		86133799178B55A2004B6339 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		8613379B178B55AC004B6339 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		8613379D178B55B7004B6339 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		861337A4178B5646004B6339 /* HISTORY.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = HISTORY.md; sourceTree = "<group>"; };
 		861337A5178B5646004B6339 /* LICENSE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.md; sourceTree = "<group>"; };
 		861337A6178B5646004B6339 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		867C7E4A178C9E8300DD3523 /* ReaderContentViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ReaderContentViewController.h; path = ../Sources/ReaderContentViewController.h; sourceTree = "<group>"; };
 		867C7E4B178C9E8300DD3523 /* ReaderContentViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReaderContentViewController.m; sourceTree = "<group>"; };
-		A1373D8717F8951E00E46EA5 /* pdf-resources.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "pdf-resources.bundle"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -213,13 +210,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A1373D8417F8951E00E46EA5 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				86133731178B546B004B6339 /* Foundation.framework in Frameworks */,
+				8613379F178B55DB004B6339 /* ImageIO.framework in Frameworks */,
+				861337A0178B55DB004B6339 /* MessageUI.framework in Frameworks */,
+				861337A1178B55DB004B6339 /* QuartzCore.framework in Frameworks */,
+				861337A2178B55DB004B6339 /* CoreGraphics.framework in Frameworks */,
+				861337A3178B55DB004B6339 /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -230,6 +226,7 @@
 			isa = PBXGroup;
 			children = (
 				86133732178B546B004B6339 /* PDFReader */,
+				8613372F178B546B004B6339 /* Frameworks */,
 				8613372E178B546B004B6339 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -238,9 +235,21 @@
 			isa = PBXGroup;
 			children = (
 				8613372D178B546B004B6339 /* libPDFReader.a */,
-				A1373D8717F8951E00E46EA5 /* pdf-resources.bundle */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		8613372F178B546B004B6339 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8613379D178B55B7004B6339 /* ImageIO.framework */,
+				8613379B178B55AC004B6339 /* MessageUI.framework */,
+				86133799178B55A2004B6339 /* QuartzCore.framework */,
+				86133797178B5590004B6339 /* CoreGraphics.framework */,
+				86133795178B5586004B6339 /* UIKit.framework */,
+				86133730178B546B004B6339 /* Foundation.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		86133732178B546B004B6339 /* PDFReader */ = {
@@ -384,30 +393,13 @@
 			productReference = 8613372D178B546B004B6339 /* libPDFReader.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		A1373D8617F8951E00E46EA5 /* pdf-resources */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = A1373DB417F8951E00E46EA5 /* Build configuration list for PBXNativeTarget "pdf-resources" */;
-			buildPhases = (
-				A1373D8317F8951E00E46EA5 /* Sources */,
-				A1373D8417F8951E00E46EA5 /* Frameworks */,
-				A1373D8517F8951E00E46EA5 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "pdf-resources";
-			productName = "pdf-resources";
-			productReference = A1373D8717F8951E00E46EA5 /* pdf-resources.bundle */;
-			productType = "com.apple.product-type.bundle";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		86133725178B546B004B6339 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0460;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = mammioux;
 			};
 			buildConfigurationList = 86133728178B546B004B6339 /* Build configuration list for PBXProject "PDFReader" */;
@@ -424,34 +416,9 @@
 			projectRoot = "";
 			targets = (
 				8613372C178B546B004B6339 /* PDFReader */,
-				A1373D8617F8951E00E46EA5 /* pdf-resources */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXResourcesBuildPhase section */
-		A1373D8517F8951E00E46EA5 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A1373DBB17F8979100E46EA5 /* Reader-Button-H.png in Resources */,
-				A1373DBC17F8979100E46EA5 /* Reader-Button-H@2x.png in Resources */,
-				A1373DBD17F8979100E46EA5 /* Reader-Button-N.png in Resources */,
-				A1373DBE17F8979100E46EA5 /* Reader-Button-N@2x.png in Resources */,
-				A1373DBF17F8979100E46EA5 /* Reader-Email.png in Resources */,
-				A1373DC017F8979100E46EA5 /* Reader-Email@2x.png in Resources */,
-				A1373DC117F8979100E46EA5 /* Reader-Mark-N.png in Resources */,
-				A1373DC217F8979100E46EA5 /* Reader-Mark-N@2x.png in Resources */,
-				A1373DC317F8979100E46EA5 /* Reader-Mark-Y.png in Resources */,
-				A1373DC417F8979100E46EA5 /* Reader-Mark-Y@2x.png in Resources */,
-				A1373DC517F8979100E46EA5 /* Reader-Print.png in Resources */,
-				A1373DC617F8979100E46EA5 /* Reader-Print@2x.png in Resources */,
-				A1373DC717F8979100E46EA5 /* Reader-Thumbs.png in Resources */,
-				A1373DC817F8979100E46EA5 /* Reader-Thumbs@2x.png in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		86133729178B546B004B6339 /* Sources */ = {
@@ -483,13 +450,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A1373D8317F8951E00E46EA5 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
@@ -518,6 +478,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -529,7 +490,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
@@ -552,7 +513,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -562,17 +523,22 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
+				CLANG_WARN_BOOL_CONVERSION = YES;
 				DSTROOT = /tmp/PDFReader.dst;
-				FRAMEWORK_SEARCH_PATHS = "../common/ThirdParty/**";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = "";
+				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PDFReader/PDFReader-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				HEADER_SEARCH_PATHS = "";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/../common/** $(SRCROOT)/../gigtracks-ipad/Sources/MusicPlayer";
 			};
 			name = Debug;
 		};
@@ -580,67 +546,22 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
+				CLANG_WARN_BOOL_CONVERSION = YES;
 				DSTROOT = /tmp/PDFReader.dst;
-				FRAMEWORK_SEARCH_PATHS = "../common/ThirdParty/**";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = "";
+				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PDFReader/PDFReader-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				HEADER_SEARCH_PATHS = "";
-				ONLY_ACTIVE_ARCH = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/../common/** $(SRCROOT)/../gigtracks-ipad/Sources/MusicPlayer";
-			};
-			name = Release;
-		};
-		A1373DB017F8951E00E46EA5 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "";
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				GCC_PRECOMPILE_PREFIX_HEADER = "";
-				GCC_PREFIX_HEADER = "";
-				GCC_PREPROCESSOR_DEFINITIONS = "";
-				GCC_WARN_64_TO_32_BIT_CONVERSION = "";
-				GCC_WARN_ABOUT_RETURN_TYPE = "";
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = "";
-				GCC_WARN_UNUSED_FUNCTION = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = 2;
-				WRAPPER_EXTENSION = bundle;
-			};
-			name = Debug;
-		};
-		A1373DB117F8951E00E46EA5 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "";
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				ENABLE_NS_ASSERTIONS = "";
-				GCC_PRECOMPILE_PREFIX_HEADER = "";
-				GCC_PREFIX_HEADER = "";
-				GCC_WARN_64_TO_32_BIT_CONVERSION = "";
-				GCC_WARN_ABOUT_RETURN_TYPE = "";
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = "";
-				GCC_WARN_UNUSED_FUNCTION = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = 2;
-				WRAPPER_EXTENSION = bundle;
 			};
 			name = Release;
 		};
@@ -661,15 +582,6 @@
 			buildConfigurations = (
 				8613373C178B546B004B6339 /* Debug */,
 				8613373D178B546B004B6339 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		A1373DB417F8951E00E46EA5 /* Build configuration list for PBXNativeTarget "pdf-resources" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A1373DB017F8951E00E46EA5 /* Debug */,
-				A1373DB117F8951E00E46EA5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

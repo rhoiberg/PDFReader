@@ -430,8 +430,8 @@
 	
 	if (fileURL != nil) // Check for non-nil file URL
 	{
-		_PDFDocRef = CGPDFDocumentCreateX((__bridge CFURLRef)fileURL, phrase);
-		
+		_PDFDocRef = CGPDFDocumentCreateUsingUrl((__bridge CFURLRef)fileURL, phrase);
+
 		if (_PDFDocRef != NULL) // Check for non-NULL CGPDFDocumentRef
 		{
 			if (page < 1) page = 1; // Check the lower page bounds
@@ -498,14 +498,12 @@
 		NSAssert(NO, @"fileURL == nil");
 	}
 	
-	self = [self initWithFrame:viewRect]; // UIView setup
+	id view = [self initWithFrame:viewRect]; // UIView setup
 	
-	if (self)
-	{
-		[self buildAnnotationLinksList]; // Links
-	}
-	
-	return self;
+	if (view != nil) [self buildAnnotationLinksList]; // Links
+    _myPage = page;
+    
+	return view;
 }
 
 - (void)removeFromSuperview
